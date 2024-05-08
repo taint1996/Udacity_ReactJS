@@ -1,29 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { SearchBook } from "./SearchBook";
-import { ListBook } from "./ListBook";
+import React, { useContext } from 'react';
+import { SearchBook } from './SearchBook';
+import { ListBook } from '../components/ListBook';
+import { ShowSearchBookContext } from '../context/ShowSearchBook';
 
 export const Home = () => {
-	const [showSearchPage, setShowSearchPage] = useState(false);
+  const { showSearchPage } = useContext(ShowSearchBookContext);
 
-	const onHandleSearchBook = () => {
-		setShowSearchPage(!showSearchPage);
-		return
-	};
-
-	return (
-		<>
-			{showSearchPage ? (
-				<SearchBook
-					onHandleSearchBook={onHandleSearchBook}
-					showSearchPage={showSearchPage}
-				/>
-			) : (
-				<ListBook
-					onHandleSearchBook={onHandleSearchBook}
-					showSearchPage={showSearchPage}
-				/>
-			)}
-		</>
-	);
+  return <>{showSearchPage ? <SearchBook /> : <ListBook />}</>;
 };
